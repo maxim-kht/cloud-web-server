@@ -36,4 +36,4 @@ server {
     }
 }
 EOL
-sudo service nginx restart
+systemctl restart nginx

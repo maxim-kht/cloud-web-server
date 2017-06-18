@@ -8,7 +8,6 @@ const exec = require('child_process').exec;
  * ---- */
 
 const APP_SERVER_URL = 'http://172.31.33.151/api/';
-const INSTANCE_METADATA_URL = 'http://169.254.169.254/latest/meta-data/';
 
 /* ----
  * App
@@ -28,15 +27,14 @@ nunjucks.configure('views', {
  * ------ */
 
 app.get('/', (req, res) => {
-  const appServer = axios.create({ baseURL: APP_SERVER_URL });
-  const instanceMetadata = axios.create({ baseUrl: INSTANCE_METADATA_URL});
+  const instance = axios.create({ baseURL: APP_SERVER_URL });
 
   axios
     .all([
-      instanceMetadata.get('public-hostname'),
-      appServer.get('messages'),
-      appServer.get('gallery'),
-      appServer.get('json-placeholder')
+      axios.get('http://169.254.169.254/latest/meta-data/public-hostname'),
+      instance.get('messages'),
+      instance.get('gallery'),
+      instance.get('json-placeholder')
     ])
     .then(axios.spread((hostname, messages, gallery, jsonPlaceholder) => {
       res.render('index.html', {
