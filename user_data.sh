@@ -3,13 +3,13 @@
 # Get node
 curl -sL https://deb.nodesource.com/setup_6.x -o nodesource_setup.sh
 bash nodesource_setup.sh
-apt-get install nodejs
 
 # Install packages
 apt-get update
-apt-get install nodejs nginx build-essential
+apt-get install -y nodejs nginx build-essential
 
-# Get repo and install packages
+# Get repo and install node packages
+cd /home/ubuntu
 git clone https://github.com/maxim-kht/cloud-web-server.git
 cd cloud-web-server
 npm install
