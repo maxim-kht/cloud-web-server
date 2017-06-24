@@ -7,7 +7,7 @@ const exec = require('child_process').exec;
  * Conf
  * ---- */
 
-const APP_SERVER_URL = 'http://172.31.33.151/api/';
+const APP_SERVER_URL = 'http://internal-lb-internal-1741190360.ap-south-1.elb.amazonaws.com/api/';
 
 /* ----
  * App
